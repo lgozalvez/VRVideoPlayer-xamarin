@@ -1,192 +1,131 @@
 ﻿using System;
-using AVFoundation;
 using CoreGraphics;
 using Foundation;
-using ObjCRuntime;
-using SceneKit;
-using SpriteKit;
 using UIKit;
+using VRVideoPlayer;
 
 namespace VRVideoPlayer.iOS
 {
-    // @interface Swifty360CameraController : NSObject <UIGestureRecognizerDelegate>
-    [BaseType(typeof(NSObject), Name = "_TtC15Swifty360Player25Swifty360CameraController")]
-    [DisableDefaultCtor]
-    interface Swifty360CameraController : IUIGestureRecognizerDelegate
-    {
-    }
+	// @interface FullScreenButton : UIButton
+	[BaseType (typeof(UIButton))]
+	interface FullScreenButton
+	{
+		// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
+		//[Export ("initWithCoder:")]
+		//[DesignatedInitializer]
+		//IntPtr Constructor (NSCoder aDecoder);
 
-    // @interface Swifty360CameraPanGestureRecognizer : UIPanGestureRecognizer
-    [BaseType(typeof(UIPanGestureRecognizer), Name = "_TtC15Swifty360Player35Swifty360CameraPanGestureRecognizer")]
-    interface Swifty360CameraPanGestureRecognizer
-    {
-        // -(instancetype _Nonnull)initWithTarget:(id _Nullable)target action:(SEL _Nullable)action __attribute__((objc_designated_initializer));
-        [Export("initWithTarget:action:")]
-        [DesignatedInitializer]
-        IntPtr Constructor([NullAllowed] NSObject target, [NullAllowed] Selector action);
-    }
+		// -(void)setWithMode:(enum Mode)mode;
+		[Export ("setWithMode:")]
+		void SetWithMode (Mode mode);
+	}
 
-    // @interface Swifty360PlayerScene : SCNScene
-    [BaseType(typeof(SCNScene), Name = "_TtC15Swifty360Player20Swifty360PlayerScene")]
-    [DisableDefaultCtor]
-    interface Swifty360PlayerScene
-    {
-        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-        //[Export("initWithCoder:")]
-        //[DesignatedInitializer]
-        //IntPtr Constructor(NSCoder aDecoder);
-    }
+	// @interface VRVideoPlayer_Swift_204 (FullScreenButton)
+	[Category]
+	[BaseType (typeof(FullScreenButton))]
+	interface FullScreenButton_VRVideoPlayer_Swift_204
+	{
+	}
 
-    // @interface Swifty360View : UIView
-    [BaseType(typeof(UIView), Name = "_TtC15Swifty360Player13Swifty360View")]
-    interface Swifty360View
-    {
-        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-        //[Export("initWithCoder:")]
-        //[DesignatedInitializer]
-        //IntPtr Constructor(NSCoder aDecoder);
+	// @interface VRVideoView : UIViewController
+	[BaseType (typeof(UIViewController))]
+	interface VRVideoView
+	{
+		// -(instancetype _Nonnull)initWithShow:(NSURL * _Nonnull)url in:(CGRect)frame autoPlay:(BOOL)autoPlay showFullScreenButton:(BOOL)showFullScreenButton __attribute__((objc_designated_initializer));
+		[Export ("initWithShow:in:autoPlay:showFullScreenButton:")]
+		[DesignatedInitializer]
+		IntPtr Constructor (NSUrl url, CGRect frame, bool autoPlay, bool showFullScreenButton);
 
-        // -(void)layoutSubviews;
-        [Export("layoutSubviews")]
-        void LayoutSubviews();
+		// -(void)viewDidLayoutSubviews;
+		[Export ("viewDidLayoutSubviews")]
+		void ViewDidLayoutSubviews ();
 
-        // -(void)didMoveToWindow;
-        [Export("didMoveToWindow")]
-        void DidMoveToWindow();
-    }
+		// -(BOOL)shouldHideTransitionView __attribute__((warn_unused_result));
+		[Export ("shouldHideTransitionView")]
+		//[Verify (MethodToProperty)]
+		bool ShouldHideTransitionView { get; }
 
-    // @interface Swifty360Player_Swift_230 (Swifty360View) <SCNSceneRendererDelegate>
-    [Category]
-    [BaseType(typeof(Swifty360View))]
-    interface Swifty360View_Swifty360Player_Swift_230 : Swifty360View
-    {
-        // -(void)renderer:(id<SCNSceneRenderer> _Nonnull)renderer updateAtTime:(NSTimeInterval)time;
-        [Export("renderer:updateAtTime:")]
-        void Renderer(SCNSceneRenderer renderer, double time);
-    }
+		// -(void)viewWillAppear:(BOOL)animated;
+		[Export ("viewWillAppear:")]
+		void ViewWillAppear (bool animated);
 
-    // @interface Swifty360ViewController : UIViewController
-    [BaseType(typeof(UIViewController), Name = "_TtC15Swifty360Player23Swifty360ViewController")]
-    interface Swifty360ViewController
-    {
-        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-        //[Export("initWithCoder:")]
-        //[DesignatedInitializer]
-        //IntPtr Constructor(NSCoder aDecoder);
+		// -(void)play;
+		[Export ("play")]
+		void Play ();
 
-        // -(void)viewDidLoad;
-        [Export("viewDidLoad")]
-        void ViewDidLoad();
+		// -(void)pause;
+		[Export ("pause")]
+		void Pause ();
 
-        // -(void)viewDidLayoutSubviews;
-        [Export("viewDidLayoutSubviews")]
-        void ViewDidLayoutSubviews();
+		// -(void)rotateBy:(float)angle;
+		[Export ("rotateBy:")]
+		void RotateBy (float angle);
 
-        // -(void)viewWillAppear:(BOOL)animated;
-        [Export("viewWillAppear:")]
-        void ViewWillAppear(bool animated);
+		// -(void)rotate:(enum RotationMode)mode animated:(BOOL)animated duration:(double)duration;
+		[Export ("rotate:animated:duration:")]
+		void Rotate (RotationMode mode, bool animated, double duration);
 
-        // -(void)viewDidDisappear:(BOOL)animated;
-        [Export("viewDidDisappear:")]
-        void ViewDidDisappear(bool animated);
+		// -(void)updateWithUrl:(NSURL * _Nonnull)url;
+		[Export ("updateWithUrl:")]
+		void UpdateWithUrl (NSUrl url);
 
-        // -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator> _Nonnull)coordinator;
-        [Export("viewWillTransitionToSize:withTransitionCoordinator:")]
-        void ViewWillTransitionToSize(CGSize size, IUIViewControllerTransitionCoordinator coordinator);
-    }
+		// -(void)updateWithUrl:(NSURL * _Nonnull)url isStreaming:(BOOL)isStreaming;
+		[Export ("updateWithUrl:isStreaming:")]
+		void UpdateWithUrl (NSUrl url, bool isStreaming);
 
-    // @interface Swifty360Player_Swift_251 (Swifty360ViewController) <SCNSceneRendererDelegate>
-    [Category]
-    [BaseType(typeof(Swifty360ViewController))]
-    interface Swifty360ViewController_Swifty360Player_Swift_251 : Swifty360ViewController
-    {
-        // -(void)renderer:(id<SCNSceneRenderer> _Nonnull)renderer updateAtTime:(NSTimeInterval)time;
-        [Export("renderer:updateAtTime:")]
-        void Renderer(SCNSceneRenderer renderer, double time);
-    }
+		// -(void)stop;
+		[Export ("stop")]
+		void Stop ();
 
-    // @interface SwiftySKVideoNode : SKVideoNode
-    [BaseType(typeof(SKVideoNode), Name = "_TtC15Swifty360Player17SwiftySKVideoNode")]
-    interface SwiftySKVideoNode
-    {
-        // -(instancetype _Nonnull)initWithAVPlayer:(AVPlayer * _Nonnull)player __attribute__((objc_designated_initializer));
-        [Export("initWithAVPlayer:")]
-        [DesignatedInitializer]
-        IntPtr Constructor(AVPlayer player);
+		// -(void)startOver;
+		[Export ("startOver")]
+		void StartOver ();
 
-        // -(instancetype _Nonnull)initWithFileNamed:(NSString * _Nonnull)videoFile __attribute__((availability(ios, introduced=8.0))) __attribute__((objc_designated_initializer));
-        [iOS(8, 0)]
-        [Export("initWithFileNamed:")]
-        [DesignatedInitializer]
-        IntPtr Constructor(string videoFile);
+		// -(void)startOverWithStreaming:(BOOL)streaming;
+		[Export ("startOverWithStreaming:")]
+		void StartOverWithStreaming (bool streaming);
 
-        // -(instancetype _Nonnull)initWithURL:(NSURL * _Nonnull)url __attribute__((availability(ios, introduced=8.0))) __attribute__((objc_designated_initializer));
-        [iOS(8, 0)]
-        [Export("initWithURL:")]
-        [DesignatedInitializer]
-        IntPtr Constructor(NSUrl url);
+		// -(void)fullScreenWithAnimated:(BOOL)animated duration:(double)duration;
+		[Export ("fullScreenWithAnimated:duration:")]
+		void FullScreenWithAnimated (bool animated, double duration);
 
-        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-        //[Export("initWithCoder:")]
-        //[DesignatedInitializer]
-        //IntPtr Constructor(NSCoder aDecoder);
-    }
-    // @interface VRVideoView : UIViewController
-    [BaseType(typeof(UIViewController), Name = "_TtC13VRVideoPlayer11VRVideoView")]
-    interface VRVideoView
-    {
-        // -(instancetype _Nonnull)initWithShow:(NSURL * _Nonnull)url in:(CGRect)frame autoPlay:(BOOL)autoPlay __attribute__((objc_designated_initializer));
-        [Export("initWithShow:in:autoPlay:")]
-        [DesignatedInitializer]
-        IntPtr Constructor(NSUrl url, CGRect frame, bool autoPlay);
+		// -(void)undoFullScreenWithAnimated:(BOOL)animated duration:(double)duration;
+		[Export ("undoFullScreenWithAnimated:duration:")]
+		void UndoFullScreenWithAnimated (bool animated, double duration);
+	}
 
-        // -(void)viewDidLayoutSubviews;
-        [Export("viewDidLayoutSubviews")]
-        void ViewDidLayoutSubviews();
+	// @interface VRVideoPlayer_Swift_339 (VRVideoView)
+	[Category]
+	[BaseType (typeof(VRVideoView))]
+	interface VRVideoView_VRVideoPlayer_Swift_339
+	{
+		// -(void)observeValueForKeyPath:(NSString * _Nullable)keyPath ofObject:(id _Nullable)object change:(NSDictionary<NSKeyValueChangeKey,id> * _Nullable)change context:(void * _Nullable)context;
+		[Export ("observeValueForKeyPath:ofObject:change:context:")]
+		unsafe void ObserveValueForKeyPath ([NullAllowed] string keyPath, [NullAllowed] NSObject @object, [NullAllowed] NSDictionary<NSString, NSObject> change, [NullAllowed] IntPtr context);
+	}
 
-        // -(BOOL)shouldHideTransitionView __attribute__((warn_unused_result));
-        [Export("shouldHideTransitionView")]
-        bool ShouldHideTransitionView { get; }
+	// @protocol VRVideoViewDelegate
+	[Protocol, Model]
+	interface VRVideoViewDelegate
+	{
+		// @required -(void)videoStatusChangedToStatus:(enum VideoStatus)status;
+		[Abstract]
+		[Export ("videoStatusChangedToStatus:")]
+		void VideoStatusChangedToStatus (VideoStatus status);
 
-        // -(void)viewWillAppear:(BOOL)animated;
-        [Export("viewWillAppear:")]
-        void ViewWillAppear(bool animated);
+		// @required -(void)loadingVideo;
+		[Abstract]
+		[Export ("loadingVideo")]
+		void LoadingVideo ();
 
-        // -(void)play;
-        [Export("play")]
-        void Play();
+		// @required -(void)readyToPlayVideo;
+		[Abstract]
+		[Export ("readyToPlayVideo")]
+		void ReadyToPlayVideo ();
 
-        // -(void)pause;
-        [Export("pause")]
-        void Pause();
-
-        // -(void)rotateBy:(float)angle;
-        [Export("rotateBy:")]
-        void RotateBy(float angle);
-
-        // -(void)rotate:(enum RotationMode)mode animated:(BOOL)animated duration:(double)duration;
-        [Export("rotate:animated:duration:")]
-        void Rotate(RotationMode mode, bool animated, double duration);
-
-        // -(void)updateWithUrl:(NSURL * _Nonnull)url;
-        [Export("updateWithUrl:")]
-        void UpdateWithUrl(NSUrl url);
-
-        // -(void)stop;
-        [Export("stop")]
-        void Stop();
-
-        // -(void)startOver;
-        [Export("startOver")]
-        void StartOver();
-
-        // -(void)fullScreenWithAnimated:(BOOL)animated duration:(double)duration;
-        [Export("fullScreenWithAnimated:duration:")]
-        void FullScreenWithAnimated(bool animated, double duration);
-
-        // -(void)undoFullScreenWithAnimated:(BOOL)animated duration:(double)duration;
-        [Export("undoFullScreenWithAnimated:duration:")]
-        void UndoFullScreenWithAnimated(bool animated, double duration);
-    }
-
+		// @required -(void)failedToLoadVideo;
+		[Abstract]
+		[Export ("failedToLoadVideo")]
+		void FailedToLoadVideo ();
+	}
 }
