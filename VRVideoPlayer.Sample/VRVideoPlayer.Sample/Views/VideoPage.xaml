@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              x:Class="VRVideoPlayer.Sample.Views.VideoPage">
     
-    <controls:VideoPlayer x:Name="Player" Url="{Binding Url}"
-                          Play="{Binding Play}"/>
+    <controls:VideoPlayer x:Name="Player" Url="https://streams.videolan.org/streams/360/eagle_360.mp4"
+                          Play="true"/>
 
 </ContentPage>

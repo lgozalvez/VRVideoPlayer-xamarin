@@ -65,7 +65,7 @@ namespace VRVideoPlayer.Sample.iOS.Renderers
             _video360 = _video360 ??
                 new VRVideoView(NSUrl.FromString(url ?? string.Empty),
                 new CGRect(_formsPlayer.X, _formsPlayer.Y, _formsPlayer.Width, _formsPlayer.Height),
-                false);
+                false, true);
 
             _videoUIView = _video360.View;
 
