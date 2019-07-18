@@ -34,6 +34,9 @@ namespace VRVideoPlayer.iOS
 	[BaseType (typeof(UIViewController),Name = "_TtC13VRVideoPlayer11VRVideoView")]
 	interface VRVideoView
 	{
+        [Export("delegate")]
+        VRVideoViewDelegate Delegate { get; set; }
+
         // -(instancetype _Nonnull)initWithShow:(NSURL * _Nonnull)url in:(CGRect)frame autoPlay:(BOOL)autoPlay showFullScreenButton:(BOOL)showFullScreenButton __attribute__((objc_designated_initializer));
         [Export("initWithShow:in:autoPlay:showFullScreenButton:")]
         [DesignatedInitializer]
@@ -107,30 +110,32 @@ namespace VRVideoPlayer.iOS
 		unsafe void ObserveValueForKeyPath ([NullAllowed] string keyPath, [NullAllowed] NSObject @object, [NullAllowed] NSDictionary<NSString, NSObject> change, [NullAllowed] IntPtr context);
 	}
 
-	// @protocol VRVideoViewDelegate
-	[Protocol, Model]
-	interface VRVideoViewDelegate
-	{
-		// @required -(void)videoStatusChangedToStatus:(enum VideoStatus)status;
-		[Abstract]
-		[Export ("videoStatusChangedToStatus:")]
-		void VideoStatusChangedToStatus (VideoStatus status);
+    // @protocol VRVideoViewDelegate
+    [BaseType(typeof(NSObject))]
+    [Protocol, Model]
+    interface VRVideoViewDelegate
+    {
+        // @required -(void)videoStatusChangedToStatus:(enum VideoStatus)status;
+        [Abstract]
+        [Export("videoStatusChangedToStatus:")]
+        void VideoStatusChangedToStatus(VideoStatus status);
 
-		// @required -(void)loadingVideo;
-		[Abstract]
-		[Export ("loadingVideo")]
-		void LoadingVideo ();
+        // @required -(void)loadingVideo;
+        [Abstract]
+        [Export("loadingVideo")]
+        void LoadingVideo();
 
-		// @required -(void)readyToPlayVideo;
-		[Abstract]
-		[Export ("readyToPlayVideo")]
-		void ReadyToPlayVideo ();
+        // @required -(void)readyToPlayVideo;
+        [Abstract]
+        [Export("readyToPlayVideo")]
+        void ReadyToPlayVideo();
 
-		// @required -(void)failedToLoadVideo;
-		[Abstract]
-		[Export ("failedToLoadVideo")]
-		void FailedToLoadVideo ();
-	}
+        // @required -(void)failedToLoadVideo;
+        [Abstract]
+        [Export("failedToLoadVideo")]
+        void FailedToLoadVideo();
+    }
+
     [BaseType(typeof(NSObject), Name = "_TtC15Swifty360Player25Swifty360CameraController")]
     [DisableDefaultCtor]
     interface Swifty360CameraController : IUIGestureRecognizerDelegate
