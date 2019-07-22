@@ -255,6 +255,8 @@ SWIFT_CLASS("_TtC13VRVideoPlayer11VRVideoView")
 ///
 /// \param autoPlay determines whether or not the video should start playing automatically. Defaults to <code>true</code>.
 ///
+/// \param showFullScreenButton determines whether or not the view should have the Full Screen Button visible.
+///
 - (nonnull instancetype)initWithShow:(NSURL * _Nonnull)url in:(CGRect)frame autoPlay:(BOOL)autoPlay showFullScreenButton:(BOOL)showFullScreenButton OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder SWIFT_UNAVAILABLE;
 - (void)viewDidLayoutSubviews;
