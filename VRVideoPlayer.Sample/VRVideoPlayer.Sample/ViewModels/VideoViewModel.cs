@@ -5,6 +5,8 @@ namespace VRVideoPlayer.Sample.ViewModels
 {
     public class VideoViewModel : BaseViewModel
     {
+
+         d  
         public string Url { get; set; }
         public bool Play { get; set; }
 
